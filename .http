@@ -1,0 +1,127 @@
+### CREATE USER
+POST http://localhost:3333/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "email":"geovannramos@gmail.com",
+    "name": "Geovanna",
+    "username":"GeoYunix",
+    "password": "Yunix0101@#$"
+    
+}
+
+### VERIFY USER
+POST http://localhost:3333/user/verify HTTP/1.1
+Content-Type: application/json
+
+{
+    "email":"maryosilva1010@gmail.com",
+    "password": "Yunix0101@#$"
+}
+
+### SEND MAIL PASSWORD
+POST http://localhost:3333/user/sendmail HTTP/1.1
+Content-Type: application/json
+
+{
+    "email":"geovannramos@gmail.com"
+}
+
+###
+PUT http://localhost:3333/user/e1583444-4239-40dc-b86e-aa8155e4542c/reset-password HTTP/1.1
+Content-Type: application/json
+
+{
+    "password":"YunixDev0101@#$"
+}
+
+
+### CREATE CATEGORIES
+POST http://localhost:3333/categories HTTP/1.1
+Content-Type: application/json
+
+{
+    "name":"Geral"
+}
+
+###
+GET http://localhost:3333/categories
+
+###
+GET http://localhost:3333/posts
+
+### CREATE TOPIC
+POST http://localhost:3333/topics HTTP/1.1
+Content-Type: application/json
+
+{
+    "title":"Requisitos funcionais",
+    "content":"Diagramas da UML, fluxogramas",
+    "userId":"1245bcf3-d1c1-4269-b4e1-4fb21f0c0622",
+    "categoryId":"8737bf2e-aaf6-4056-a1ca-b8c01bd20afc"
+}
+
+### GET TOPICS USER
+GET http://localhost:3333/topics/1245bcf3-d1c1-4269-b4e1-4fb21f0c0622
+
+### UPDATE TOPIC
+PUT http://localhost:3333/topic/984876c7-2a8b-4728-896a-e18ba12a2a8b HTTP/1.1
+Content-Type: application/json
+
+{
+    "title":"Sustentabilidade Ambiental",
+    "content": "Estratégias e práticas para promover a sustentabilidade e diminuir o impacto ambiental.",
+    "categoryId":"a8b0f726-0c01-4344-b089-569a43b74e85",
+    "userId": "14f602c7-a155-437d-b41a-663a84b0d228"
+}
+
+###
+GET http://localhost:3333/topics/e1583444-4239-40dc-b86e-aa8155e4542c
+
+
+### CREATE POST
+POST http://localhost:3333/posts HTTP/1.1
+Content-Type: application/json
+
+{
+    "content": "Vamos debater quais sao as melhores praticas de programação, rocketseat x alura",
+    "imageUrl":"https://www.google.com/url?sa=i&url=https%3A%2F%2Ffr.freepik.com%2Fphotos-premium%2Fmulticolored-owl-ai-generated_43517238.htm&psig=AOvVaw2iRO5Zv5_yXHL2CdSWakDw&ust=1727032076310000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCODP9vnd1IgDFQAAAAAdAAAAABAO",
+    "userId": "e1583444-4239-40dc-b86e-aa8155e4542c",
+    "topicId": "8c267762-7855-48dd-a15b-340682849d57"
+}
+
+
+### UPDATE POST
+PUT http://localhost:3333/post/5dc5b765-4cc4-4d09-b661-7a7fbeae7010 HTTP/1.1
+Content-Type: application/json
+
+{
+    "content": "Implementação de interfaces com typescript",
+    "image_url":"https://cdn-icons-png.flaticon.com/512/3391/3391272.png",
+    "topicId":"8241ce2d-93e3-4acf-8b17-b6a70add2b1d",
+    "userId":"1245bcf3-d1c1-4269-b4e1-4fb21f0c0622"
+}
+
+### REACTION POST
+POST http://localhost:3333/post/reaction HTTP/1.1
+Content-Type: application/json
+
+{
+    "type": true,
+    "userId":"1245bcf3-d1c1-4269-b4e1-4fb21f0c0622",
+    "postId":"f0dae979-ffcd-471a-8536-eae27a78226c"
+}
+
+### 
+GET http://localhost:3333/user/1245bcf3-d1c1-4269-b4e1-4fb21f0c0622
+
+### GET POST DETAILS
+GET http://localhost:3333/posts/1245bcf3-d1c1-4269-b4e1-4fb21f0c0622
+
+### DELETE POST
+DELETE http://localhost:3333/post/5985ffa0-cafa-4fbf-a4c7-20bf722c4241 HTTP/1.1
+Content-Type: application/json
+
+### DELETE TOPIC
+DELETE http://localhost:3333/topic/984876c7-2a8b-4728-896a-e18ba12a2a8b HTTP/1.1
+Content-Type: application/json
