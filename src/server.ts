@@ -12,7 +12,6 @@ import { getUserDetails } from "./routes/get-user-details";
 import { updatePost } from "./routes/update-post";
 import { deletePost } from "./routes/delete-post";
 import { updateTopic } from "./routes/update-topic";
-import { confirmReaction } from "./routes/confirm-reaction";
 import { deleteTopic } from "./routes/delete-topic";
 import { verifyUser } from "./routes/verify-user";
 import { SendMailPassword } from "./routes/sendmail-password";
@@ -41,7 +40,6 @@ app.register(createUser);
 app.register(createCategory);
 app.register(createTopic);
 app.register(createPost);
-app.register(confirmReaction);
 
 app.register(SendMailPassword);
 app.register(verifyUser);
