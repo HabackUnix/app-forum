@@ -1,15 +1,13 @@
 {
-    "$schema": "https://json.schemastore.org/tsconfig",
-    "_version": "20.1.0",
-  
-    "compilerOptions": {
-      "lib": ["es2023"],
-      "module": "node16",
-      "target": "es2022",
-  
-      "strict": true,
-      "esModuleInterop": true,
-      "skipLibCheck": true,
-      "moduleResolution": "node16"
-    }
-  }
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "CommonJS",
+    "outDir": "./dist",         // Diretório de saída
+    "rootDir": "./src",         // Diretório de origem do código TypeScript
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"],      // Incluir todos os arquivos dentro de src
+  "exclude": ["node_modules", "dist"] // Excluir node_modules e dist
+}

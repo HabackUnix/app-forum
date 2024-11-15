@@ -1,0 +1,62 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const fastify_1 = __importDefault(require("fastify"));
+const cors_1 = __importDefault(require("@fastify/cors"));
+const fastify_type_provider_zod_1 = require("fastify-type-provider-zod");
+const env_1 = __importDefault(require("./env"));
+const error_handler_1 = require("./error-handler");
+const create_users_1 = require("./routes/create-users");
+const create_categories_1 = require("./routes/create-categories");
+const create_topics_1 = require("./routes/create-topics");
+const create_posts_1 = require("./routes/create-posts");
+const get_user_details_1 = require("./routes/get-user-details");
+const update_post_1 = require("./routes/update-post");
+const delete_post_1 = require("./routes/delete-post");
+const update_topic_1 = require("./routes/update-topic");
+const confirm_reaction_1 = require("./routes/confirm-reaction");
+const delete_topic_1 = require("./routes/delete-topic");
+const verify_user_1 = require("./routes/verify-user");
+const sendmail_password_1 = require("./routes/sendmail-password");
+const verify_token_password_1 = require("./routes/verify-token-password");
+const update_user_password_1 = require("./routes/update-user-password");
+const get_categories_1 = require("./routes/get-categories");
+const get_topics_1 = require("./routes/get-topics");
+const get_posts_1 = require("./routes/get-posts");
+const get_posts_user_1 = require("./routes/get-posts-user");
+const get_topics_user_1 = require("./routes/get-topics-user");
+const app = (0, fastify_1.default)();
+app.register(cors_1.default, {
+    origin: '*'
+});
+app.setErrorHandler(error_handler_1.errorHandler);
+app.setValidatorCompiler(fastify_type_provider_zod_1.validatorCompiler);
+app.setSerializerCompiler(fastify_type_provider_zod_1.serializerCompiler);
+app.register(create_users_1.createUser);
+app.register(create_categories_1.createCategory);
+app.register(create_topics_1.createTopic);
+app.register(create_posts_1.createPost);
+app.register(confirm_reaction_1.confirmReaction);
+app.register(sendmail_password_1.SendMailPassword);
+app.register(verify_user_1.verifyUser);
+app.register(verify_token_password_1.verifyToken);
+app.register(update_post_1.updatePost);
+app.register(update_topic_1.updateTopic);
+app.register(update_user_password_1.updateUserPassword);
+app.register(get_user_details_1.getUserDetails);
+app.register(get_categories_1.getCategories);
+app.register(get_topics_1.getTopics);
+app.register(get_posts_1.getPosts);
+app.register(get_posts_user_1.getPostsUser);
+app.register(get_topics_user_1.getTopicsUser);
+app.register(delete_post_1.deletePost);
+app.register(delete_topic_1.deleteTopic);
+app.addHook('onRequest', (request, reply, done) => {
+    console.log('Recebendo requisição de:', request.ip);
+    done();
+});
+app.listen({ port: env_1.default.PORT, host: '0.0.0.0' }).then(() => {
+    console.log('Server running!');
+});
