@@ -27,7 +27,7 @@ import { getTopicsUser } from "./routes/get-topics-user";
 const app = fastify();
 
 app.register(cors, {
-    origin: '*'
+    origin: 'https://forum-web-app-forum.up.railway.app'
 })
 
 app.setErrorHandler(errorHandler);
