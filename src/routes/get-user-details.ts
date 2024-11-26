@@ -6,15 +6,23 @@ import { ClientError } from "../error/client-error";
 
 
 export async function getUserDetails(app: FastifyInstance) {
-    app.withTypeProvider<ZodTypeProvider>().get('/user/:userId', {
+    app.withTypeProvider<ZodTypeProvider>().post('/user/:userId', {
         schema: {
             params: z.object({
                 userId: z.string().uuid(),
+            }),
+            body: z.object({
+                authToken: z.coerce.string()
             })
         },
     }, async (request) => {
 
         const { userId } = request.params;
+        const { authToken } = request.body;
+
+        if(!authToken) {
+            throw new ClientError('Solicitação negada!');
+        }
 
         const user = await prisma.user.findUnique({
             where: {id: userId},
